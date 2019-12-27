@@ -22,9 +22,6 @@ import java.util.ListIterator;
 
 public class Adapt extends RecyclerView.Adapter<Adapt.ViewHolder> {
 
-    public TextView head;
-    public TextView desc;
-    public LinearLayout ll;
     public static final String ext1 = "com.example.learnrecyclerview.extratext1";
     public static final String ext2 = "com.example.learnrecyclerview.extratext2";
 
@@ -49,12 +46,15 @@ public class Adapt extends RecyclerView.Adapter<Adapt.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ListOfNotes listItem = listItems.get(position);
 
-        head.setText(listItem.getH());
-        desc.setText(listItem.getD());
-        ll.setOnClickListener(new View.OnClickListener() {
+        holder.head.setText(listItem.getH());
+        holder.desc.setText(listItem.getD());
+        final String t1 = holder.head.getText().toString();
+        final String t2 = holder.desc.getText().toString();
+
+        holder.ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openeditor();
+                openeditor(t1,t2);
             }
         });
     }
@@ -66,6 +66,10 @@ public class Adapt extends RecyclerView.Adapter<Adapt.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        public TextView head;
+        public TextView desc;
+        public LinearLayout ll;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -75,10 +79,8 @@ public class Adapt extends RecyclerView.Adapter<Adapt.ViewHolder> {
         }
     }
 
-    public void openeditor(){
+    public void openeditor(String t1, String t2){
 
-        String t1 = head.getText().toString();
-        String t2 = desc.getText().toString();
         Intent intent = new Intent(context,EditorWindow.class);
         intent.putExtra(ext1,t1);
         intent.putExtra(ext2,t2);
