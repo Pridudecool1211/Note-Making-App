@@ -3,8 +3,11 @@
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,8 @@ import java.util.List;
     private RecyclerView.Adapter adapter;
 
     private List<ListOfNotes> listItems;
+    public static final String TAG = "MainActivity";
+    public static final int numcol = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +34,8 @@ import java.util.List;
 
         for(int i=0; i<10; ++i){
             ListOfNotes listItem = new ListOfNotes(
-                    "heading" + (i+1),
-                    "HA ha Ha hA"
+                    "Heading" + (i+1),
+                    "This is Note no. " + (i+1)
             );
 
             listItems.add(listItem);
@@ -38,5 +43,19 @@ import java.util.List;
 
         adapter = new Adapt(listItems,this);
         recyclerView.setAdapter(adapter);
+
+        initrv();
+    }
+
+    public void initrv(){
+        Log.d(TAG,"Initialising Staggered Recycler View");
+
+        RecyclerView recyclerView = findViewById(R.id.rec);
+        Adapt adapt = new Adapt(listItems,this);
+
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(numcol, LinearLayoutManager.VERTICAL);
+
+        recyclerView.setLayoutManager(staggeredGridLayoutManager);
+        recyclerView.setAdapter(adapt);
     }
 }

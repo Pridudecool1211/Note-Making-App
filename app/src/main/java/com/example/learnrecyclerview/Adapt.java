@@ -3,16 +3,21 @@ package com.example.learnrecyclerview;
 import android.app.LauncherActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import org.w3c.dom.Text;
 
@@ -21,6 +26,8 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class Adapt extends RecyclerView.Adapter<Adapt.ViewHolder> {
+
+    private static final String TAG = "Adapt";
 
     public static final String ext1 = "com.example.learnrecyclerview.extratext1";
     public static final String ext2 = "com.example.learnrecyclerview.extratext2";
@@ -44,16 +51,21 @@ public class Adapt extends RecyclerView.Adapter<Adapt.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Log.d(TAG, "OnBindViewHolder called");
         ListOfNotes listItem = listItems.get(position);
+
+        RequestOptions requestOptions = new RequestOptions()
+                .placeholder(R.drawable.ic_launcher_background);
 
         holder.head.setText(listItem.getH());
         holder.desc.setText(listItem.getD());
         final String t1 = holder.head.getText().toString();
         final String t2 = holder.desc.getText().toString();
 
-        holder.ll.setOnClickListener(new View.OnClickListener() {
+        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG,"OnClick clicked on");
                 openeditor(t1,t2);
             }
         });
@@ -68,14 +80,14 @@ public class Adapt extends RecyclerView.Adapter<Adapt.ViewHolder> {
 
         public TextView head;
         public TextView desc;
-        public LinearLayout ll;
+        public RelativeLayout relativeLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             head = (TextView) itemView.findViewById(R.id.h);
             desc = (TextView) itemView.findViewById(R.id.d);
-            ll = (LinearLayout) itemView.findViewById(R.id.ll);
+            relativeLayout = (RelativeLayout) itemView.findViewById(R.id.relativeLayout);
         }
     }
 
