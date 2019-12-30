@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
  public class MainActivity extends AppCompatActivity {
+
+    DatabaseHelper MyDB;
 
     private FloatingActionButton fab;
     private RecyclerView recyclerView;
@@ -53,6 +57,24 @@ import java.util.List;
             );
 
             listItems.add(listItem);
+        }
+
+        Cursor cursor = MyDB.getnotes();
+        StringBuffer buffer = new StringBuffer();
+        StringBuffer buffer1 = new StringBuffer();
+        if (cursor.getCount() != 0) {
+            while (cursor.moveToNext()) {
+
+                buffer.append(cursor.getString(1));
+                buffer1.append(cursor.getString(2));
+
+                ListOfNotes listItem1 = new ListOfNotes(
+                        buffer.toString(),
+                        buffer1.toString()
+                );
+
+                listItems.add(listItem1);
+            }
         }
 
         adapter = new Adapt(listItems,this);
