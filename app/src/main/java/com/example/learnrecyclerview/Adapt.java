@@ -31,6 +31,8 @@ public class Adapt extends RecyclerView.Adapter<Adapt.ViewHolder> {
 
     public static final String ext1 = "com.example.learnrecyclerview.extratext1";
     public static final String ext2 = "com.example.learnrecyclerview.extratext2";
+    public static final String ext3 = "com.example.learnrecyclerview.extratext3";
+
 
     private List<ListOfNotes> listItems;
     private Context context;
@@ -52,7 +54,7 @@ public class Adapt extends RecyclerView.Adapter<Adapt.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.d(TAG, "OnBindViewHolder called");
-        ListOfNotes listItem = listItems.get(position);
+        final ListOfNotes listItem = listItems.get(position);
 
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.drawable.ic_launcher_background);
@@ -66,7 +68,7 @@ public class Adapt extends RecyclerView.Adapter<Adapt.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Log.d(TAG,"OnClick clicked on");
-                openeditor(t1,t2);
+                openeditor(listItem.getId(),t1,t2);
             }
         });
     }
@@ -91,11 +93,12 @@ public class Adapt extends RecyclerView.Adapter<Adapt.ViewHolder> {
         }
     }
 
-    public void openeditor(String t1, String t2){
+    public void openeditor(int updateID, String t1, String t2){
 
         Intent intent = new Intent(context,EditorWindow.class);
         intent.putExtra(ext1,t1);
         intent.putExtra(ext2,t2);
+        intent.putExtra(ext3,updateID);
         context.startActivity(intent);
     }
 }

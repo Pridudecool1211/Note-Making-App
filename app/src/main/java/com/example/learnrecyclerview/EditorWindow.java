@@ -20,6 +20,7 @@ public class EditorWindow extends AppCompatActivity {
         Intent intent = getIntent();
         String t1 = intent.getStringExtra(Adapt.ext1);
         String t2 = intent.getStringExtra(Adapt.ext2);
+        final int updateID = intent.getIntExtra(Adapt.ext3,0);
 
         final EditText ed1 = (EditText) findViewById(R.id.eh);
         final EditText ed2 = (EditText) findViewById(R.id.ed);
@@ -36,7 +37,18 @@ public class EditorWindow extends AppCompatActivity {
                 String t01 = ed1.getText().toString();
                 String t02 = ed2.getText().toString();
 
-                MyDB.updatenote(t01,t02);
+                MyDB.updatenote(updateID,t01,t02);
+                Intent intent1 = new Intent(EditorWindow.this,MainActivity.class);
+                EditorWindow.this.startActivity(intent1);
+            }
+        });
+
+        Button button1 = (Button) findViewById(R.id.delete);
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyDB.deletenote(updateID);
                 Intent intent1 = new Intent(EditorWindow.this,MainActivity.class);
                 EditorWindow.this.startActivity(intent1);
             }

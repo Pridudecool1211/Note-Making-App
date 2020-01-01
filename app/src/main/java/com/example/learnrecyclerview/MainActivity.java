@@ -34,6 +34,7 @@ import java.util.List;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         MyDB = new DatabaseHelper(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -57,6 +58,7 @@ import java.util.List;
             while (cursor.moveToNext()) {
 
                 ListOfNotes listItem1 = new ListOfNotes(
+                        Integer.parseInt(cursor.getString(0)),
                         cursor.getString(1),
                         cursor.getString(2)
                 );

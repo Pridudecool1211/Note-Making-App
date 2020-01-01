@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static final String Dname = "DevSoc.db";
+    public static final String Dname = "DevSoc1.db";
     public static final String Tname = "Notes";
 
     public static final String ID = "ID";
@@ -54,13 +54,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public boolean updatenote(String Head, String Des){
+    public boolean updatenote(int updateID, String Head, String Des){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(ID,updateID);
         contentValues.put(Heading,Head);
         contentValues.put(Description,Des);
-        db.update(Tname,contentValues,"ID = ?", new String[] {ID});
+        db.update(Tname,contentValues,"ID = ?", new String[] {Integer.toString(updateID)});
         return true;
+    }
+
+    public Integer deletenote(int deleteID){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(Tname, "ID = ?", new String[] { Integer.toString(deleteID)});
     }
 }
