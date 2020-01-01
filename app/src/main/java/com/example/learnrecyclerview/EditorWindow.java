@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class EditorWindow extends AppCompatActivity {
+    DatabaseHelper MyDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        MyDB = new DatabaseHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor_window);
 
@@ -17,10 +21,26 @@ public class EditorWindow extends AppCompatActivity {
         String t1 = intent.getStringExtra(Adapt.ext1);
         String t2 = intent.getStringExtra(Adapt.ext2);
 
-        EditText ed1 = (EditText) findViewById(R.id.eh);
-        EditText ed2 = (EditText) findViewById(R.id.ed);
+        final EditText ed1 = (EditText) findViewById(R.id.eh);
+        final EditText ed2 = (EditText) findViewById(R.id.ed);
 
         ed1.setText(t1);
         ed2.setText(t2);
+
+        Button button = (Button) findViewById(R.id.update);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String t01 = ed1.getText().toString();
+                String t02 = ed2.getText().toString();
+
+                MyDB.updatenote(t01,t02);
+                Intent intent1 = new Intent(EditorWindow.this,MainActivity.class);
+                EditorWindow.this.startActivity(intent1);
+            }
+        });
+
     }
 }
