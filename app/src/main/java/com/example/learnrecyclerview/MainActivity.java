@@ -33,6 +33,7 @@ import java.util.List;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        MyDB = new DatabaseHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -50,27 +51,14 @@ import java.util.List;
 
         listItems = new ArrayList<>();
 
-        for(int i=0; i<10; ++i){
-            ListOfNotes listItem = new ListOfNotes(
-                    "Heading" + (i+1),
-                    "This is Note no. " + (i+1)
-            );
-
-            listItems.add(listItem);
-        }
 
         Cursor cursor = MyDB.getnotes();
-        StringBuffer buffer = new StringBuffer();
-        StringBuffer buffer1 = new StringBuffer();
         if (cursor.getCount() != 0) {
             while (cursor.moveToNext()) {
 
-                buffer.append(cursor.getString(1));
-                buffer1.append(cursor.getString(2));
-
                 ListOfNotes listItem1 = new ListOfNotes(
-                        buffer.toString(),
-                        buffer1.toString()
+                        cursor.getString(1),
+                        cursor.getString(2)
                 );
 
                 listItems.add(listItem1);
