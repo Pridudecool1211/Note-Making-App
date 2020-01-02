@@ -1,5 +1,6 @@
 package com.example.learnrecyclerview;
 
+import android.app.Activity;
 import android.app.LauncherActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -68,6 +69,7 @@ public class Adapt extends RecyclerView.Adapter<Adapt.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Log.d(TAG,"OnClick clicked on");
+                ((Activity)context).finish();
                 openeditor(listItem.getId(),t1,t2);
             }
         });

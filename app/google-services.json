@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "555186074601",
+    "firebase_url": "https://notetakingapp-devsoc.firebaseio.com",
+    "project_id": "notetakingapp-devsoc",
+    "storage_bucket": "notetakingapp-devsoc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:555186074601:android:e87e283804ee8e29cad178",
+        "android_client_info": {
+          "package_name": "com.example.learnrecyclerview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "555186074601-s027lpi1oapi1323h688259i96n9hlnq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.learnrecyclerview",
+            "certificate_hash": "8c0e86d6ed4955267e2134b47bc296a1ce737f09"
+          }
+        },
+        {
+          "client_id": "555186074601-5oqbaf82bn979shpaih90fahgu6glhpe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxb-WNaYzBNAPSfLJICoPS0Gab6lLmuWI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "555186074601-5oqbaf82bn979shpaih90fahgu6glhpe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
