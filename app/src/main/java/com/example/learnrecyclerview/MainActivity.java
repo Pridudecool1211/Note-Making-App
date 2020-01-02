@@ -42,6 +42,7 @@ import java.util.List;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+               finish();
                newnote();
             }
         });
@@ -71,7 +72,6 @@ import java.util.List;
         recyclerView.setAdapter(adapter);
 
         initrv();
-
     }
 
     public void initrv(){

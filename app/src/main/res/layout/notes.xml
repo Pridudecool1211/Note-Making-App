@@ -10,8 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
-        app:cardElevation="2dp"
-        android:layout_centerHorizontal="true">
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="true"
+        android:layout_centerHorizontal="true"
+        android:outlineSpotShadowColor="#000000"
+        app:cardBackgroundColor="#D8FFEB3B">
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -27,13 +30,14 @@
                 android:textAlignment="center"
                 android:padding="10dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                />
+                android:fontFamily="sans-serif-medium"/>
 
             <TextView
                 android:id="@+id/d"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
+                android:textSize="17dp"
                 android:layout_below="@id/h"
                 />
 

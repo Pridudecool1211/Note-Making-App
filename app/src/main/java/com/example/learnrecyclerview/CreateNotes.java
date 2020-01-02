@@ -35,6 +35,7 @@ public class CreateNotes extends AppCompatActivity {
                 MyDB.insertdata(t01,t02);
 
                 Intent intent1 = new Intent(CreateNotes.this,MainActivity.class);
+                finish();
                 CreateNotes.this.startActivity(intent1);
             }
         });

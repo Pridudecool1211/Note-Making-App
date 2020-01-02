@@ -39,6 +39,7 @@ public class EditorWindow extends AppCompatActivity {
 
                 MyDB.updatenote(updateID,t01,t02);
                 Intent intent1 = new Intent(EditorWindow.this,MainActivity.class);
+                finish();
                 EditorWindow.this.startActivity(intent1);
             }
         });
@@ -50,6 +51,7 @@ public class EditorWindow extends AppCompatActivity {
             public void onClick(View view) {
                 MyDB.deletenote(updateID);
                 Intent intent1 = new Intent(EditorWindow.this,MainActivity.class);
+                finish();
                 EditorWindow.this.startActivity(intent1);
             }
         });
